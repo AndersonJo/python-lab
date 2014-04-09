@@ -37,8 +37,5 @@ def xyz_finder(s):
     """
     pass
 
-print 'asdfqwer'[:-2]
-
-
 if __name__ =="__main__":
     unittest.main()

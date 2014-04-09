@@ -44,7 +44,5 @@ def end_other(a, b):
 
 
 if __name__ =="__main__":
-    print dir(end_other)
-    print help(end_other)
     unittest.main()
     

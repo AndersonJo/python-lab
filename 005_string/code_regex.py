@@ -42,9 +42,7 @@ def code_finder(string):
     @return (boolean) : code 를 찾아서 몇개인지 알아내세요. 단 code의 d는 어떤 문자 형식도 될 수 있습니다.
     """
     
-
-for a in _ANSWERS:
-    code_finder(a)
+        
 
 
 if __name__ =="__main__":
