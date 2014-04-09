@@ -1,6 +1,6 @@
 #-*- encoding:utf-8 -*-
 import unittest
-from celery import __main__
+
 _ANSWERS = {
     'abcxyz': True,
     'abc.xyz': False,
@@ -36,6 +36,8 @@ def xyz_finder(s):
     @return (boolean) : 'xyz'가 있으면 True를 리턴시킵니다. 단 ".xyz"는 인정되지 않습니다.
     """
     pass
+
+print 'asdfqwer'[:-2]
 
 
 if __name__ =="__main__":
