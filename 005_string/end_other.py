@@ -24,12 +24,16 @@ class UnitTest(unittest.TestCase):
     def setUp(self):
         self.answers = _ANSWERS
         self.func = end_other
+        print "*********** Unittest Start ************".center(70)
     
     def test_all(self):
         for args, answer in self.answers.items():
             returnValue = self.func(*args)
-            errMsg = "\nArguments: %s %s \n답: %s \n당신의 답: %s"% (args[0], args[1], answer, returnValue) 
-            self.assertEqual(answer, returnValue, msg=errMsg)
+            errMsg = "틀렸습니다 - args: %-10s %-10s Yours: %-10s Correct Answer: %-10s"% (args[0], args[1], returnValue, answer)
+            try:
+                self.assertEqual(answer, returnValue, msg=errMsg)
+            except AssertionError as e:
+                print e
 
 
 def end_other(a, b):

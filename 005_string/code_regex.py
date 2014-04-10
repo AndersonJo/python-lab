@@ -22,17 +22,20 @@ _ANSWERS = {
       
 
 
-class UnitTest(unittest.TestCase):
-    
+class UnitTest(unittest.TestCase):    
     def setUp(self):
         self.answers = _ANSWERS
         self.func = code_finder
+        print "*********** Unittest Start ************".center(70)
     
     def test_all(self):
         for q, a in self.answers.items():
             returnValue = self.func(q)
-            errMsg = "\nArguments: %s  \n답: %s \n당신의 답: %s"% (q, a, returnValue) 
-            self.assertEqual(a, returnValue, msg=errMsg)
+            errMsg = "틀렸습니다 - args: %-25s  당신의 답: %-10s 답: %-10s"% (q, returnValue, a) 
+            try:
+                self.assertEqual(a, returnValue, msg=errMsg)
+            except Exception as e:
+                print e
 
 
 def code_finder(string):
@@ -41,10 +44,10 @@ def code_finder(string):
     @param string (str)  
     @return (boolean) : code 를 찾아서 몇개인지 알아내세요. 단 code의 d는 어떤 문자 형식도 될 수 있습니다.
     """
-    
         
 
 
-if __name__ =="__main__":
+if __name__ =="__main__":   
     unittest.main()
+ 
     
