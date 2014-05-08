@@ -12,5 +12,16 @@ most_common() 메소드를 사용해서 정렬을 할 수 있습니다.
 
 from collections import Counter
 from pprint import pprint
-import pickle
+import codecs
 
+
+
+with codecs.open('20140207_Seoul.txt', 'r', encoding='EUC-KR') as readFile:
+    print readFile.readline()
+    with codecs.open('write.txt', 'w', encoding='UTF-8') as writeFile:
+        for line in readFile:
+            splittedText = line.split('|')
+            sido = splittedText[2]
+            gun = splittedText[4]
+            writeFile.write(sido + '|' + gun + '|')
+            
