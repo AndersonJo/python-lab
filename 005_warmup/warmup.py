@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 '''
 파이썬/안드로이드/빅데이터 개발자 조창민입니다.
-컨설팅/개발문의는 이메일로 부탁드립니다
+컨설팅/개발문의/강의 문의는 이메일로 부탁드립니다
 http://mket.biz
 a141890@gmail.com
 '''
@@ -13,6 +13,7 @@ import unittest
 class WarmupTest(unittest.TestCase):
     """
     기본적인 논리적 흐름을 테스트 합니다
+    if, while, list 를 배운 이후 시작합니다.
     """
     
     def test_hello(self):
