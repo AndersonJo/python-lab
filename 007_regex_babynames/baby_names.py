@@ -44,7 +44,7 @@ class UnitTest(unittest.TestCase):
             answerFiles = pickle.load(answerFile)
              
         for fileName in _BABY_FILE_NAMES:
-            with open(fileName, 'r') as f:
+            with open(fileName, 'rt') as f:
                 returnValue = self.func(f.read())
             
             if type(returnValue) != dict:
