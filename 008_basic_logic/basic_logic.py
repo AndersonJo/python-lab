@@ -8,6 +8,7 @@ a141890@gmail.com
 
 import yourtest
 import unittest
+import random
 
 
 class DictionaryTest(unittest.TestCase):
@@ -98,18 +99,20 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(False, yourtest.economy_risk(rate=1100, boom=True))
         self.assertEqual(False, yourtest.economy_risk(rate=1100))
         
-    def test_sum(self):
+    def test_sum_without7(self):
         """
-        주어진 문장에서 숫자가 나오
+        모든 수를 합하세요. 
+        단 7이 들어간 수는 피해주세요.
         """
-        self.assertEqual(False, yourtest.complicated_sum(rate=1100))
-        
-        
-print 2**38
-        
-        
-        
-        
+        self.assertEqual(10, yourtest.sum_without7(1,2,3,4))
+        self.assertEqual(0, yourtest.sum_without7(13487, 122, 88, -210))
+        self.assertEqual(-1, yourtest.sum_without7(-1))
+        self.assertEqual(0, yourtest.sum_without7(7))
+        self.assertEqual(0, yourtest.sum_without7())
+        self.assertEqual(0, yourtest.sum_without7(1270, 750, 64817, 777))
+    
+    
+
         
 if __name__ == "__main__":
     unittest.main()
