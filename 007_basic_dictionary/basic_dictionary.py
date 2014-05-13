@@ -113,6 +113,20 @@ class DictionaryTest(unittest.TestCase):
         
         self.assertEqual(answers, yourtest.remove_banana(stores))
         
+    def test_kwargs(self):
+        """
+        in 또는 not__in 을 구별하는 함수를 만들어라. 
+        예를 들어서
+        has_kwargs(apple__in=['apple', 'banana']) 
+        에는.. apple이 주어진 리스트안에 존재하기 때문에 
+        {'apple': True} 를 리턴시킨다.
+        """
+        self.assertEqual({'apple': True}, yourtest.has_kwargs(apple__in=['apple', 'banana']))
+        self.assertEqual({'apple': False}, yourtest.has_kwargs(apple__not_in=['apple', 'banana']))
+        self.assertEqual({'apple': False, 'banana':False}, yourtest.has_kwargs(apple__not_in=['apple', 'banana'], banana__in=['abc']))
+        self.assertEqual({}, yourtest.has_kwargs())
+        self.assertEqual({'monkey': False}, yourtest.has_kwargs(monkey__in=['shark', 'squid', 'fish']))
+        
         
         
 if __name__ == "__main__":

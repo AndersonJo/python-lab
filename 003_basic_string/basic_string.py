@@ -154,19 +154,7 @@ class BasicStringTest(unittest.TestCase):
         self.assertEqual('1234 PYTHON IS VERY SIMPLE', yourtest.string_upper('1234 python is very simple'))
         self.assertEqual('  MKET IS YOUR FRIEND  ', yourtest.string_upper('  mket IS your friEND  '))
     
-    def test_cut(self):
-        """
-        5글자가 넘어가는 문장은 5글자로 잘라버리고 뒤에 "..." 을 붙이는 함수를 만든다.
-        5글자 내외이면 그대로 출력한다.
-        깔끔한 처리를 위해서 strip 함수가 필요할 것이다.
-        """
-        self.assertEqual('banan...', yourtest.cut5('banana'))
-        self.assertEqual('apple', yourtest.cut5('apple'))
-        self.assertEqual('abc', yourtest.cut5('abc'))
-        self.assertEqual('d', yourtest.cut5('  d'))
-        self.assertEqual('dayby...', yourtest.cut5('  daybyday '))
-        self.assertEqual('my na...', yourtest.cut5('my name is Chang Min'))
-        self.assertEqual('Life...', yourtest.cut5('Life is short, you need Python'))
+
         
 if __name__ == "__main__":
     unittest.main()
