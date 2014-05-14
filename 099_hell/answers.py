@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 '''
 Created on May 13, 2014
 
@@ -14,10 +15,7 @@ class Answers(object):
     def __init__(self):
         pass
 
-    def __get_answers(self):
-        if __name__ == "__main__":
-            raise Exception("Wrong")
-        
+    def __get_answers(self):      
         text = None
         with open(Answers.FILE_NAME, 'rt') as f:
             text = pickle.load(f)
@@ -33,9 +31,6 @@ class Answers(object):
     def check(self, levelName, value):
         return self.__check(levelName, value)
     
-
-class WrongAnswerException(Exception):
-    pass
 
 
 

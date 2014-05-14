@@ -6,7 +6,7 @@ http://mket.biz
 a141890@gmail.com
 '''
 
-from answers import Answers, WrongAnswerException
+from answers import Answers
 import unittest
 import yourtest
 
@@ -30,15 +30,9 @@ class PythonHellTest(unittest.TestCase):
         이문제를 풀기전.. 모든 사람들은 2번 생각을 한다.
         """
         text = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."
-        try:
-            self.answer.check('level1', yourtest.koe(text))
-        except WrongAnswerException:
-            """
-            답은 가려져 있습니다.
-            아래의 코드는 답이 아닙니다.
-            """
-            self.assertEqual("You're", yourtest.koe(text))
-            self.assertEqual("wrong", yourtest.koe(text))
+        isCorrectAnswer = self.answer.check('level1', yourtest.koe(text))
+        self.assertEqual(True, isCorrectAnswer)
+        
     
     def test_find_characters(self):
         """
@@ -46,11 +40,8 @@ class PythonHellTest(unittest.TestCase):
         """
         with open('_level2_data', 'rt') as f:
             text = f.read()
-        
-        try:
-            self.answer.check('level2', yourtest.find_characters(text))
-        except WrongAnswerException:
-            self.assertEqual("You're", yourtest.koe(text))
+        isCorrectAnswer = self.answer.check('level2', yourtest.find_characters(text))
+        self.assertEqual(True, isCorrectAnswer)
             
     def test_find_characters2(self):
         """
@@ -59,19 +50,13 @@ class PythonHellTest(unittest.TestCase):
         """
         with open('_level3_data', 'rt') as f:
             text = f.read()
-        
-        try:
-            self.answer.check('level2', yourtest.small_letter_and_bodyguards(text))
-        except WrongAnswerException:
-            self.assertEqual("You're", yourtest.koe(text))
-        
+        isCorrectAnswer = self.answer.check('level3', yourtest.small_letter_and_bodyguards(text))
+        self.assertEqual(True, isCorrectAnswer)
         
         
         
 if __name__ == "__main__":
     unittest.main()
-
-
 
 
 
