@@ -45,6 +45,16 @@ critics = {'Claudia Puig': {'Just My Luck': 3.0,
           'Superman Returns': 4.0,
           'You, Me and Dupree': 1.0}}
 
+
+def sim_manhattan(person1,person2):
+    """Calculates the Manhattan distance between two critics"""
+    total = 0
+    ##assume person1 is the x axes and person 2 is the y axes
+    for item in person1:
+        if item in person2:
+            total += abs(person1[item]-person2[item])
+    return  1/(total+1)
+
 # Returns a distance-based similarity score for person1 and person2
 def sim_distance(data1, data2):
     # Get the list of shared_items
@@ -97,24 +107,16 @@ def sim_pearson(data1, data2):
 
     return r
 
-def sim_manhattan(person1,person2):
-    """Calculates the Manhattan distance between two critics"""
-    total = 0
-    ##assume person1 is the x axes and person 2 is the y axes
-    for item in person1:
-        if item in person2:
-            total += abs(person1[item]-person2[item])
-    return  1/(total+1)
 
 
 # Returns the best matches for person from the prefs dictionary.
 # Number of results and similarity function are optional params.
-def topMatches(data, name, n=5, similarity=sim_pearson):
+def topMatches(data, name, similarity=sim_pearson):
     scores = [(other, similarity(data[name], data[other]))
-                    for other in critics if other != name]
+                    for other in data if other != name]
     scores.sort()
     scores.reverse()
-    return scores[0:n]
+    return scores
 
 
 # Gets recommendations for a person by using a weighted average
@@ -147,5 +149,3 @@ def getRecommendations(data, name, similarity=sim_pearson):
     rankings.sort()
     rankings.reverse()
     return rankings
-
-results = []
