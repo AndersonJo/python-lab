@@ -110,8 +110,68 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(0, yourtest.sum_without7(7))
         self.assertEqual(0, yourtest.sum_without7())
         self.assertEqual(0, yourtest.sum_without7(1270, 750, 64817, 777))
+
+    def test_sum_double(self):
+        """
+        두개의 숫자가 주어지고, 둘의 합계를 리턴시키세요. 만약 둘의 숫자가 같다면 합의 곱하기 2를 해주세요
+        """
+        self.assertEqual(3, yourtest.sum_double(1, 2))
+        self.assertEqual(5, yourtest.sum_double(3, 2))
+        self.assertEqual(-1, yourtest.sum_double(-1, 0))
+        self.assertEqual(12, yourtest.sum_double(3, 3))
+        self.assertEqual(0, yourtest.sum_double(0, 0))
+        self.assertEqual(1, yourtest.sum_double(0, 1))
+        self.assertEqual(7, yourtest.sum_double(3, 4))
     
-    
+    def test_monkey_troble(self):
+        """
+        우리에게는 두 마리의 원숭이가 있으며, monkey_trouble 함수는 두마리의 원숭이가 웃는지 안웃는지 나타냅니다.
+        만약 두마리 모두 웃거나, 안웃으면 괜찮지만, 하나는 웃고 하나는 안 웃으면 문제가 생깁니다.
+        """
+        self.assertEqual(True, yourtest.monkey_trouble(True, True))
+        self.assertEqual(True, yourtest.monkey_trouble(False, False))
+        self.assertEqual(False, yourtest.monkey_trouble(True, False))
+        self.assertEqual(False, yourtest.monkey_trouble(False, True))
+        
+    def test_diff21(self):
+        """
+        주어진값과 21과의 절대값(absolute) 차이를 리턴시키세요.
+        만약 그 차이값이 21을 넘을 경우, 그 차이값에 2를 곱하세요. 
+        """
+        self.assertEqual(2, yourtest.diff21(19))
+        self.assertEqual(11, yourtest.diff21(10))
+        self.assertEqual(0, yourtest.diff21(21))
+        self.assertEqual(2, yourtest.diff21(22))
+        self.assertEqual(8, yourtest.diff21(25))
+        self.assertEqual(18, yourtest.diff21(30))
+        self.assertEqual(21, yourtest.diff21(0))
+        self.assertEqual(20, yourtest.diff21(1))
+        self.assertEqual(19, yourtest.diff21(2))
+        self.assertEqual(22, yourtest.diff21(-1))
+        self.assertEqual(23, yourtest.diff21(-2))
+        self.assertEqual(58, yourtest.diff21(50))
+        
+    def test_parrot_trouble(self):
+        """
+        우리는 아주 시끄러운 앵무새 한마리를 키우고 있다. 
+        parrot_trouble함수는 두개의 parameters 를 받는다. 
+        첫번째는 이 앵무새가 우는지 안우는지..
+        두번째는 시간이다. (0~24 사이의 시간)
+        
+        만약 이 앵무새가 7시 이전 또는 20시 이후에 시끄럽게 울면 분명 이웃집에서 난리가 날것이다.
+        문제가 생겼는지 안생겼는지 알아보는 함수를 만들어보자 
+        """
+        self.assertEqual(True, yourtest.parrot_trouble(True, 6))
+        self.assertEqual(False, yourtest.parrot_trouble(True, 7))
+        self.assertEqual(False, yourtest.parrot_trouble(False, 6))
+        self.assertEqual(True, yourtest.parrot_trouble(True, 21))
+        self.assertEqual(False, yourtest.parrot_trouble(False, 21))
+        self.assertEqual(False, yourtest.parrot_trouble(False, 20))
+        self.assertEqual(True, yourtest.parrot_trouble(True, 23))
+        self.assertEqual(False, yourtest.parrot_trouble(False, 23))
+        self.assertEqual(False, yourtest.parrot_trouble(True, 20))
+        self.assertEqual(False, yourtest.parrot_trouble(False, 12))
+        
 
         
 if __name__ == "__main__":
