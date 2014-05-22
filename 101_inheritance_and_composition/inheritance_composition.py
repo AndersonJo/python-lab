@@ -11,7 +11,7 @@ import unittest
 import random
 
 
-class DictionaryTest(unittest.TestCase):
+class InheritanceAndCompositionTest(unittest.TestCase):
     
     def test_make_human(self):
         """
