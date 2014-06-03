@@ -28,6 +28,5 @@ class WarmupTest(unittest.TestCase):
         self.assertEqual(10, yourtest.double(5))
         self.assertEqual("skrillexskrillex", yourtest.double("skrillex"))
     
-        
 if __name__ == "__main__":
     unittest.main()
