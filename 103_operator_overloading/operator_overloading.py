@@ -55,7 +55,6 @@ class OperatorOverloadingTest(unittest.TestCase):
         number = yourtest.Number(123456789)
         self.assertEqual("123", number[:3])
         self.assertEqual("987654321", number[::-1])
-        self.assertEqual("987654321", number[::-1])
         
     def test_iter(self):
         """
