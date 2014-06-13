@@ -22,8 +22,6 @@ class OSAndSysTest(unittest.TestCase):
         
         if os.path.exists('awesome.txt'):
             os.remove(os.path.join(base_dir, 'awesome.txt'))
-        
-    
     
     def test_open_text(self):
         """
@@ -49,8 +47,6 @@ class OSAndSysTest(unittest.TestCase):
         answer = self.hash(yourtest.foo_euckr())
         self.assertEqual(self.answer3, answer)
         
-        
-    
     def hash(self, text):
         m = hashlib.md5()
         m.update(text)
