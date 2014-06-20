@@ -40,7 +40,7 @@ class UnitTest(unittest.TestCase):
             pickle.dump(response, f, protocol=pickle.HIGHEST_PROTOCOL)
         """
         answerFiles = None
-        with open('answers.txt', 'r') as answerFile:
+        with open('answers.txt', 'rt') as answerFile:
             answerFiles = pickle.load(answerFile)
              
         for fileName in _BABY_FILE_NAMES:
