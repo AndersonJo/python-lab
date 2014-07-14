@@ -10,39 +10,45 @@ import hashlib
 import os
 import unittest
 import yourtest
+import codecs
 
 
 
 class OSAndSysTest(unittest.TestCase):
     def setUp(self):
         base_dir = os.path.dirname(__file__)
+        self.awesome_path = os.path.join(base_dir, 'awesome.txt')
+        
         self.answer1 = "64258084ba1c0e33e62234cd24ba4da7"
-        self.answer2 = "5a326194198ba50616be2236d9e3f350"
+        self.answer2 = "4a5ebbc74252c0265c202237af0c427b"
         self.answer3 = "ef9cdad2b9976062762a39131384659f"
         
-        if os.path.exists('awesome.txt'):
-            os.remove(os.path.join(base_dir, 'awesome.txt'))
+        if os.path.exists(self.awesome_path):
+            os.remove(self.awesome_path)
     
     def test_open_text(self):
         """
         python.txt 파일을 text파일로 열은후, 파일 안에 들어 있는 내용을 리턴시키세요
+        codecs를 사용해야 합니다.
         """
         self.assertEqual(self.answer1, self.hash(yourtest.open_python_text()))
     
     def test_write_text(self):
         """
-        awesome.txt 파일을 만드세요. 
-        그 안의 내용은 python.txt의 내용이 들어가면 됩니다.
-        단! 모든 "영어" 글자가 제거된체 들어가야 합니다.
+        python.txt 파일을 읽은 후
+        모든 영어를 제거한뒤 awesome.txt에 저장하세요
+        그리고 저장한 내용을 리턴시키세요
         """
         answer = self.hash(yourtest.write_awesome())
+        if not os.path.exists(self.awesome_path):
+            self.assert_('You need to make awesome.txt')
         self.assertEqual(self.answer2, answer)
     
     def test_euckr(self):
         """
         korea.txt 파일을 EUC-KR 인코딩으로 저장이 되어 있다. 
         읽어서 제대로 출력 시키자
-        codecs.open 사용 또는 decode를 사용한다.
+        decode를 사용한다.
         """
         answer = self.hash(yourtest.foo_euckr())
         self.assertEqual(self.answer3, answer)

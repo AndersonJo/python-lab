@@ -5,7 +5,6 @@
 http://mket.biz
 a141890@gmail.com
 '''
-from bson.objectid import ObjectId
 import codecs
 from hashlib import md5
 import re
