@@ -16,7 +16,7 @@ import yourtest
 class OSAndSysTest(unittest.TestCase):
     def setUp(self):
         base_dir = os.path.dirname(__file__)
-        self.answer1 = "7f6b2b893e5cb8f923a4e7da669557cc"
+        self.answer1 = "64258084ba1c0e33e62234cd24ba4da7"
         self.answer2 = "5a326194198ba50616be2236d9e3f350"
         self.answer3 = "ef9cdad2b9976062762a39131384659f"
         

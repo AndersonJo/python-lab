@@ -166,7 +166,6 @@ class RegexBasic(unittest.TestCase):
         correct_answer = '2894a918d791e4025bcccc5e53276e50'
         your_answer =  self.hashcode(''.join(phones))
         self.assertEqual(correct_answer, your_answer)
-        
     
     def hashcode(self, data):
         m = md5()
