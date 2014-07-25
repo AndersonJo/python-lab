@@ -42,11 +42,12 @@ class AlgorithmTest(unittest.TestCase):
         """
         self.assertEqual(4, yourtest.sum_odd(2))
         self.assertEqual(9, yourtest.sum_odd(3))
-        self.assertEqual(25, yourtest.sum_odd(5))
-        self.assertEqual(49, yourtest.sum_odd(7))
+        self.assertEqual(225, yourtest.sum_odd(15))
+        self.assertEqual(1156, yourtest.sum_odd(34))
         self.assertEqual(10000, yourtest.sum_odd(100))
         
-        
+    
+    
     
 
         

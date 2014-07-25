@@ -41,6 +41,7 @@ class OperatorOverloadingTest(unittest.TestCase):
         곱하기를 한다.
         * __getitem__(self, value) 를 사용한다.
         """
+        print 'test_getitem'
         number = yourtest.Number(number=10)
         self.assertEqual(100, number[10])
         self.assertEqual(50, number[5])
@@ -69,12 +70,12 @@ class OperatorOverloadingTest(unittest.TestCase):
         멈추기 위해서는, StopIteration 에러를 사용한다
         """
         total = 0
-        number = yourtest.Number(number=10)
+        number = yourtest.Number(number=17)
         for i in number:
             total += i
         
-        self.assertEqual(55, total)
-        self.assertEqual([1,2,3,4,5,6,7,8,9,10], list(number))
+        self.assertEqual(153, total)
+        self.assertEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], list(number))
         
     def test_contains(self):
         """
