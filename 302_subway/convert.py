@@ -5,29 +5,56 @@ Created on 2014. 7. 5.
 @author: a141890
 '''
 from pprint import pprint
+from threading import Thread, Lock
 import codecs
 import json
 import pyproj
+from time import sleep
+from multiprocessing import Process
 
 p1 = pyproj.Proj(init="epsg:2192")
 wgs84 = pyproj.Proj(init='epsg:4326')
 
 x, y = 493365,1125595
 
+lock = Lock()
+f = open('result.txt', 'w')
 
-
-for i in xrange(7000):
-    for j in xrange(10000):
-        try:
-            p1 = pyproj.Proj(init="epsg:"+ str(i))
-            wgs84 = pyproj.Proj(init='epsg:'+ str(j))
-            a, b = pyproj.transform(p1, wgs84, x, y)
-            c, d = int(a), int(b)
-            if (c in (126, 127) and d in (37, 38)) or (d in (126, 127) and c in (37, 38)):
-                print 'hahahahaha:', i, j,  b, ',', a
-        except :
-            pass
+def find(start, end):
+    for i in xrange(7000):
+        for j in xrange(start, end):
+            try:
+                p1 = pyproj.Proj(init="epsg:"+ str(i))
+                wgs84 = pyproj.Proj(init='epsg:'+ str(j))
+                a, b = pyproj.transform(p1, wgs84, x, y)
+                c, d = int(a), int(b)
+                if (c in (126, 127) and d in (37, 38)) or (d in (126, 127) and c in (37, 38)):
+                    with lock:
+                        text = 'hahahahaha: ' + str(i) +" "+ str(j) +" "+ str(b) + ', '+ str(a)
+                        f.write(text)
+                        f.flush()
+                        print text
+            except :
+                pass
+            
     
+    print 'END', start, end
+
+
+
+threads = []
+for i in xrange(300, 700, 5):
+    print 'Thread', i , 'Started'
+    t = Process(None, target=find, args=(i-5, i))
+    #t.setDaemon(True)
+    print 'ha?'
+    t.start()
+    print 'haaa?'
+    threads.append(t)
+    
+for t in threads:
+    t.join()
+f.close()
 
 # hahahahaha: 2192 37.1614584618 , 1.15144314459
 # hahahahaha: 2229 37.9719016408 , -135.204857895
