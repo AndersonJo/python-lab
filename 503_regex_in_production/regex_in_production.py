@@ -7,14 +7,12 @@ a141890@gmail.com
 '''
 import codecs
 from hashlib import md5
-import re
 import unittest
+
 import yourtest
 
 
-
 class RegexBasic(unittest.TestCase):
-    
     def test_abusive(self):
         """
         채팅프로그램을 만들려고 한다.
@@ -25,6 +23,7 @@ class RegexBasic(unittest.TestCase):
         
         개새, 씹새, 짭새 <-- 이것들을 캐치해낸다.
         """
+
         self.assertNotEqual(None, yourtest.catch_abusive_words(u"안녕 씹새야"))
         self.assertNotEqual(None, yourtest.catch_abusive_words(u"술먹는데 짭새가 오는겨~"))
         self.assertEqual(None, yourtest.catch_abusive_words(u"새나라의 어린이는~"))
@@ -33,7 +32,7 @@ class RegexBasic(unittest.TestCase):
         self.assertEqual(None, yourtest.catch_abusive_words(u"hello"))
         self.assertEqual(None, yourtest.catch_abusive_words(u""))
         self.assertEqual(None, yourtest.catch_abusive_words(u"    "))
-        
+
     def test_email(self):
         """
         간단하게 이메일 오류체크하는 함수를 만들어라
@@ -49,7 +48,7 @@ class RegexBasic(unittest.TestCase):
         self.assertEqual(False, yourtest.is_email(u"1234@"))
         self.assertEqual(False, yourtest.is_email(u" "))
         self.assertEqual(False, yourtest.is_email(u"@"))
-        
+
     def test_title(self):
         """
         게시판 제목 데이터가 들어왔다. 
@@ -61,9 +60,9 @@ class RegexBasic(unittest.TestCase):
         self.assertEqual(u"어드벤쳐 타임!", yourtest.clean_sentence(u"  어드벤쳐  타임!"))
         self.assertEqual(u"hello everyone.", yourtest.clean_sentence(u"hello everyone.     "))
         self.assertEqual(u"", yourtest.clean_sentence(u"   "))
-        self.assertEqual(u"피 곤 ... 하 다.... 흐 .. 아..", 
+        self.assertEqual(u"피 곤 ... 하 다.... 흐 .. 아..",
                          yourtest.clean_sentence(u" 피   곤   ... 하 다....   흐 .. 아..  "))
-        
+
     def test_mongodb(self):
         """
         MongoDB에서 키값으로 쓰이는 것은.. 
@@ -80,7 +79,7 @@ class RegexBasic(unittest.TestCase):
         self.assertEqual(False, yourtest.is_mongodb(u'6d47bf8'))
         self.assertEqual(False, yourtest.is_mongodb(u'   '))
         self.assertEqual(False, yourtest.is_mongodb(u''))
-        
+
     def test_naver(self):
         """
         웹싸이트 주소가 내가 찾는 주소인지 맞는지 확인하는 함수를 만들어라
@@ -99,12 +98,14 @@ class RegexBasic(unittest.TestCase):
         self.assertEqual(True, yourtest.naver(u'http://naver.com/sports/index.nhn?category=baseball'))
         self.assertEqual(True, yourtest.naver(u'http://shopping.naver.com/'))
         self.assertEqual(True, yourtest.naver(u'http://naver.com/sports/index.nhn?category=baseball'))
-        self.assertEqual(True, yourtest.naver(u'http://news.naver.com/main/read.nhn?oid=055&sid1=103&aid=0000280477&mid=shm&mode=LSD&nh=20140620213340'))
+        self.assertEqual(True, yourtest.naver(
+            u'http://news.naver.com/main/read.nhn?oid=055&sid1=103&aid=0000280477&mid=shm&mode=LSD&nh=20140620213340'))
         self.assertEqual(True, yourtest.naver(u'http://blog.naver.com/ani_changa/220036454221'))
         self.assertEqual(False, yourtest.naver(u'http://www.changkwang.kr/'))
         self.assertEqual(False, yourtest.naver(u'http://stackoverflow.com/'))
-        self.assertEqual(False, yourtest.naver(u'http://stackoverflow.com/questions/24333618/django-context-not-rendering'))
-        
+        self.assertEqual(False,
+                         yourtest.naver(u'http://stackoverflow.com/questions/24333618/django-context-not-rendering'))
+
     def test_stackoverflow(self):
         """
         Stackoverflow의 내용을 가져오려고 한다.
@@ -119,11 +120,10 @@ class RegexBasic(unittest.TestCase):
         your_answer = None
         with codecs.open('stackoverflow.html', 'rt', encoding='UTF-8') as f:
             your_answer = yourtest.stackoverflow(f.read())
-        
+
         self.assertEqual(correct_answer, self.hashcode(your_answer))
-            
-        
-    
+
+
     def test_phone(self):
         """
         핸드폰 번호를 찾아내라.
@@ -161,22 +161,17 @@ class RegexBasic(unittest.TestCase):
         phones = []
         with codecs.open('phone.txt', 'rt', encoding='UTF-8') as f:
             phones = yourtest.find_all_phones(f.read())
-            
+
         correct_answer = '2894a918d791e4025bcccc5e53276e50'
-        your_answer =  self.hashcode(''.join(phones))
+        your_answer = self.hashcode(''.join(phones))
         self.assertEqual(correct_answer, your_answer)
-    
+
     def hashcode(self, data):
         m = md5()
         m.update(data)
         return m.hexdigest()
-        
-            
 
-         
-   
-        
-        
+
 if __name__ == "__main__":
     unittest.main()
 

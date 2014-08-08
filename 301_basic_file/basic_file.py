@@ -12,8 +12,6 @@ import unittest
 import yourtest
 import codecs
 
-
-
 class BasicFileTest(unittest.TestCase):
     
     def test_basic_decode(self):
@@ -65,11 +63,6 @@ class BasicFileTest(unittest.TestCase):
         md5 = hashlib.md5()
         md5.update(content.encode('utf-8'))
         return md5.hexdigest()
-        
-        
-        
-   
-        
         
 if __name__ == "__main__":
     unittest.main()
