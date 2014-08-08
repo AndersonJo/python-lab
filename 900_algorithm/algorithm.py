@@ -21,6 +21,8 @@ class AlgorithmTest(unittest.TestCase):
         이 안에 들어있는 모든 정수값을 더하라.
         
         for문을 사용하지 않는다.
+
+        n(a+l)/2
         """
         self.assertEqual(55, yourtest.sum_all(1, 10))
         self.assertEqual(5050, yourtest.sum_all(1, 100))
