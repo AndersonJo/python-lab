@@ -14,49 +14,61 @@ import codecs
 
 
 
-class OSAndSysTest(unittest.TestCase):
-    def setUp(self):
-        base_dir = os.path.dirname(__file__)
-        self.awesome_path = os.path.join(base_dir, 'awesome.txt')
-        
-        self.answer1 = "64258084ba1c0e33e62234cd24ba4da7"
-        self.answer2 = "4a5ebbc74252c0265c202237af0c427b"
-        self.answer3 = "ef9cdad2b9976062762a39131384659f"
-        
-        if os.path.exists(self.awesome_path):
-            os.remove(self.awesome_path)
+class BasicFileTest(unittest.TestCase):
     
-    def test_open_text(self):
+    def test_basic_decode(self):
         """
-        python.txt 파일을 text파일로 열은후, 파일 안에 들어 있는 내용을 리턴시키세요
-        codecs를 사용해야 합니다.
+        Decode the following words
         """
-        self.assertEqual(self.answer1, self.hash(yourtest.open_python_text()))
-    
-    def test_write_text(self):
-        """
-        python.txt 파일을 읽은 후
-        모든 영어를 제거한뒤 awesome.txt에 저장하세요
-        그리고 저장한 내용을 리턴시키세요
-        """
-        answer = self.hash(yourtest.write_awesome())
-        if not os.path.exists(self.awesome_path):
-            self.assert_('You need to make awesome.txt')
-        self.assertEqual(self.answer2, answer)
-    
-    def test_euckr(self):
-        """
-        korea.txt 파일을 EUC-KR 인코딩으로 저장이 되어 있다. 
-        읽어서 제대로 출력 시키자
-        decode를 사용한다.
-        """
-        answer = self.hash(yourtest.foo_euckr())
-        self.assertEqual(self.answer3, answer)
+        self.assertEqual(u'한글', yourtest.simple_decode('\xed\x95\x9c\xea\xb8\x80'))
+        self.assertEqual(u'조창민', yourtest.simple_decode('\xec\xa1\xb0\xec\xb0\xbd\xeb\xaf\xbc'))
+        self.assertEqual(u'프로페셔널', yourtest.simple_decode('\xed\x94\x84\xeb\xa1\x9c\xed\x8e\x98\xec\x85\x94\xeb\x84\x90'))
         
-    def hash(self, text):
-        m = hashlib.md5()
-        m.update(text)
-        return m.hexdigest()
+    def test_basic_encode(self):
+        """
+        Encode the following 
+        """
+        self.assertEqual('\xed\x95\x9c\xea\xb8\x80', yourtest.simple_encode(u'한글'))
+        self.assertEqual('\xe6\x82\xa8\xe5\xa5\xbd', yourtest.simple_encode(u'您好'))
+        self.assertEqual('\xe3\x81\x93\xe3\x82\x93\xe3\x81\xab\xe3\x81\xa1\xe3\x81\xaf', yourtest.simple_encode(u'こんにちは'))
+    
+    def test_stupid_open(self):
+        """
+        open the "python.txt" file without codecs library
+        return the first word of the third line  of the content.
+        You need to decode the word with UTF-8
+        """
+        correct_answer = u"파이썬은"
+        your_answer = yourtest.stupid_open()
+        self.assertEqual(correct_answer, your_answer)
+    
+    def test_codecs_open(self):
+        """
+        Just open the "python.txt" with codecs library.
+        return the content of the file
+        """
+        correct_answer = "7f6b2b893e5cb8f923a4e7da669557cc"
+        content = yourtest.just_codecs_open()
+        your_answer = self._make_hash(content)
+        self.assertEqual(correct_answer, your_answer)
+        
+    def test_codecs_open_with_euckr(self):
+        """
+        Open the "korea.txt" file with codecs library.
+        You may need to use 'EUC-KR' codec.
+        
+        Return the most frequently shown word
+        """
+        self.assertEqual(u'한반도', yourtest.open_euckr())
+        
+    def _make_hash(self, content):
+        md5 = hashlib.md5()
+        md5.update(content.encode('utf-8'))
+        return md5.hexdigest()
+        
+        
+        
+   
         
         
 if __name__ == "__main__":

@@ -4,15 +4,16 @@ Created on 2014. 7. 5.
 
 @author: a141890
 '''
+from multiprocessing import Process
 from pprint import pprint
 from threading import Thread, Lock
+from time import sleep
 import codecs
+import csv
 import json
 import pyproj
-from time import sleep
-from multiprocessing import Process
 
-p1 = pyproj.Proj(init="epsg:2192")
+korea_epsg = pyproj.Proj(init="epsg:3383")
 wgs84 = pyproj.Proj(init='epsg:4326')
 
 x, y = 493365,1125595
@@ -20,91 +21,75 @@ x, y = 493365,1125595
 lock = Lock()
 f = open('result.txt', 'w')
 
-def find(start, end):
+def find():
     for i in xrange(7000):
-        for j in xrange(start, end):
-            try:
-                p1 = pyproj.Proj(init="epsg:"+ str(i))
-                wgs84 = pyproj.Proj(init='epsg:'+ str(j))
-                a, b = pyproj.transform(p1, wgs84, x, y)
-                c, d = int(a), int(b)
-                if (c in (126, 127) and d in (37, 38)) or (d in (126, 127) and c in (37, 38)):
-                    with lock:
-                        text = 'hahahahaha: ' + str(i) +" "+ str(j) +" "+ str(b) + ', '+ str(a)
-                        f.write(text)
-                        f.flush()
-                        print text
-            except :
-                pass
+        try:
+            p1 = pyproj.Proj(init="epsg:"+ str(i))
+            a, b = pyproj.transform(p1, wgs84, x, y)
+            a, b = float(a), float(b)
+            diff = abs(abs(a) - abs(b))
+            #37.554748, 126.970647
+            #89.415899
             
-    
-    print 'END', start, end
+            
+            if diff >= 89 and diff <= 90 and a<b:
+                print 'WOW', i, diff, a, b
+                
+            continue
+            
+        except Exception as e:
+            pass
+
+def transform(x, y, diff=0):
+    a, b = pyproj.transform(korea_epsg, wgs84, x, y)
+    a, b = float(a), float(b)
+    if diff:
+        a, b = a-diff, b-diff 
+    return a, b
 
 
-
-threads = []
-for i in xrange(300, 700, 5):
-    print 'Thread', i , 'Started'
-    t = Process(None, target=find, args=(i-5, i))
-    #t.setDaemon(True)
-    print 'ha?'
-    t.start()
-    print 'haaa?'
-    threads.append(t)
-    
-for t in threads:
-    t.join()
-f.close()
-
-# hahahahaha: 2192 37.1614584618 , 1.15144314459
-# hahahahaha: 2229 37.9719016408 , -135.204857895
-# hahahahaha: 2770 37.9719016419 , -135.204857894
-# hahahahaha: 2874 37.9719016408 , -135.204857895
-# hahahahaha: 3066 37.2679089488 , 36.9248893893
-# hahahahaha: 3497 37.9719016419 , -135.204857894
-# hahahahaha: 3498 37.9719016408 , -135.204857895
-# hahahahaha: 5130 58.9466173826 , 37.3411235769
-
-
-def c():
-    coordinations = {}
-    with codecs.open(u'subway_coordination.csv', 'rt', encoding='EUC-KR') as f:
-        f.readline()
-        f.readline()
-        for line in f:
-            row_data = line.split(',')
+def convert(diff=0):
+    response = []
+    with open('subway_coordination.csv', 'rb') as f:
+        reader = csv.reader(f)
+        for line in reader:
             try:
-                station = row_data[1]
-                x = int(row_data[5])
-                y = int(row_data[6])
-                coordinations[station] = {'x': x, 'y': y}
+                station = line[1]
+                
+                x = float(line[5])
+                y = float(line[6])
+                
+                
+                x,y = transform(x, y)
+                
+                response.append({'x': x, 'y': y})
             except Exception as e:
-                continue
-            
-    return coordinations
-        
-def inout():
-    response = {}
-    with codecs.open(u'get_in_out.csv', 'rt', encoding='EUC-KR') as f:
-        print f.readline()
-        print f.readline()
-        for line in f:
-            row_data = line.split(',')
-            station = row_data[3]
-            get_in = row_data[4]
-            get_out = row_data[5]
-            response[station] = {'in': get_in, 'out': get_out}
+                
+                pass
     return response
+            
 
-def main():
-    coordinations = c()
-    inouts = inout()
-    for station, data in coordinations.items():
-        a, b = pyproj.transform(p1, wgs84, data['x'], data['y'])
-        print 'xy : ', station, data['x'], data['y'], b,',', a, a-b
+# WOW 2277 89.1418479941 -102.150996108 13.0091481139
+# WOW 2279 89.7264027044 -97.0252979902 -7.29889528577
+# WOW 2846 89.141847995 -102.150996109 13.0091481139
+# WOW 2848 89.7264027052 -97.0252979902 -7.298895285
+# WOW 2918 89.1418479941 -102.150996108 13.0091481139
+# WOW 2920 89.7264027044 -97.0252979902 -7.29889528577
+# WOW 3663 89.141847995 -102.150996109 13.0091481139
+# WOW 3664 89.1418479941 -102.150996108 13.0091481139
+# WOW 3671 89.7264027052 -97.0252979902 -7.298895285
+# WOW 3672 89.7264027044 -97.0252979902 -7.29889528577
+
+
 
 if __name__ == "__main__":
-    # main()
+    print find()
+    print transform(37.554748, 126.970647)
+    print 32.575077694475446 - 37.554748
+    result = convert(17.0303296945)
+    print result
+    print json.dumps(result)
+    
     pass
 
 
