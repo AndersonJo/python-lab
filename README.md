@@ -40,7 +40,7 @@ HBI연구소 : http://hbiedu.co.kr/curriculum/regular_detail.jsp?seq=781&flag=1
 화이팅 :) 인내, 겸손, 열정으로 배워봅시다!
 
 
-# 강의 교안 안내 #
+### 강의 교안 안내 ###
 
 아래의 주소에서 계속 업데이트 되는 강의 교안을 받아 보실수 있습니다.
 [https://bitbucket.org/jochangmin/python_lab/wiki/browse/](https://bitbucket.org/jochangmin/python_lab/wiki/browse/)
@@ -48,7 +48,7 @@ HBI연구소 : http://hbiedu.co.kr/curriculum/regular_detail.jsp?seq=781&flag=1
 \* 경고합니다. 해당 교안의 내용은 강의의 작은 일부분일 뿐입니다. 인터넷에서 보신다면 
 
 
-# 유닛테스트 답안 #
+### 유닛테스트 답안 ###
 
 단안은 강의시간동안 조창민 강사님이 풀어드립니다.
 
