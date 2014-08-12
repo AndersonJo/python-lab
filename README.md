@@ -45,7 +45,7 @@ HBI연구소 : http://hbiedu.co.kr/curriculum/regular_detail.jsp?seq=781&flag=1
 아래의 주소에서 계속 업데이트 되는 강의 교안을 받아 보실수 있습니다.
 [https://bitbucket.org/jochangmin/python_lab/wiki/browse/](https://bitbucket.org/jochangmin/python_lab/wiki/browse/)
 
-\* 경고합니다. 해당 교안의 내용은 강의의 작은 일부분일 뿐입니다. 인터넷에서 보신다면 
+\* 경고합니다. 해당 교안의 내용은 강의의 작은 일부분일 뿐입니다. 강의내용을 위키에 있는 교안으로 판단하지 말아주세요. 
 
 
 ### 유닛테스트 답안 ###
