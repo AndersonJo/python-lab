@@ -264,5 +264,5 @@ if __name__ == '__main__':
         sampletrain(cl)
 
 
-    # example_conditional_prob()
-    example_assumed_prob()
+    example_conditional_prob()
+    #example_assumed_prob()

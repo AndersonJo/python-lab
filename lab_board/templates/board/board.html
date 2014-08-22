@@ -1,0 +1,51 @@
+
+
+
+<style>
+.board_pagination{
+    padding:10px;
+}
+.example_page{
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #aaa;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    color: #fff;
+}
+.example_selected_page{
+    background-color: #EF1C67;
+}
+</style>
+<div class="board_pagination">
+    {%if paginator.has_previous%}
+    <a href="?page={{paginator.previous}}">
+    <div class="goog-inline-block example_page">
+        Previous
+    </div> </a>
+    <div class="goog-inline-block">
+        ...
+    </div>
+    {%endif%}
+
+    {%for i in paginator.page_range%}
+    <a href="{{mket_example_path}}?page={{i}}">
+    <div class="goog-inline-block example_page {%if paginator.current_page == i%}example_selected_page{%endif%}">
+        {{i}}
+    </div> </a>
+    {%endfor%}
+
+    {%if paginator.has_next%}
+    <div class="goog-inline-block">
+        ...
+    </div>
+    <a href="?page={{paginator.next}}">
+    <div class="goog-inline-block example_page">
+        Next
+    </div> </a>
+    {%endif%}
+
+</div>

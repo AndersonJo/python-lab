@@ -38,4 +38,3 @@ class TagModel(Model):
     
     def __unicode__(self):
         return unicode(self.name)
-        

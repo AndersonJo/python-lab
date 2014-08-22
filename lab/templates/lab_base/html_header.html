@@ -1,0 +1,80 @@
+{%extends "lab_base/html_base.html"%}
+
+{%block html_css%}
+{{block.super}}
+<style>
+    .lab_header {
+        width: 100%;
+        background-color: #333;
+        color: #00BDFF;
+        min-width: 980px;
+    }
+
+    .lab_header_padder {
+        padding: 10px;
+    }
+
+    .lab_header div {
+        vertical-align: bottom;
+    }
+
+    /**
+    Title
+    */
+    .lab_header_title{
+        color: #00BDFF;
+
+    }
+
+    .lab_header_button {
+        background-color: #00BDFF;
+        color: #333;
+        font-size: 20px;
+        border: 0px;
+        font-weight: bold;
+        font-family: namsan, namsan2;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .lab_header_button:active {
+        background-color: #d12352;
+    }
+</style>
+{%endblock%}
+
+{%block main_header%}
+<div class="lab_header ">
+    <div class="lab_header_padder">
+        <div class="mket_table" style="width:100%;">
+            <div class="mket_table_row">
+                <div class="mket_table_cell">
+                    <a href="/">
+                        <h1 class="lab_header_title">
+                            개발자 조창민의 파이썬!
+                        </h1>
+                        <h4 style="margin-top:5px;" class="lab_header_title">
+                            파이썬, 아마존 웹 서비스, 빅데이터, 안드로이드, 하하하하하
+                        </h4>
+                    </a>
+                </div>
+                {%block main_header_auth%}
+                <div class="mket_table_cell" style="text-align: right; padding:10px;">
+
+                    {%if not user.is_authenticated%}
+                    <a href="/members/login/">
+                        <button type="button" class="lab_header_button">
+                            로그인 하기
+                        </button>
+                    </a>
+                    {%endif%}
+
+                </div>
+                {%endblock%}
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
