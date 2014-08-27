@@ -32,24 +32,15 @@ class BasicFileTest(unittest.TestCase):
     
     def test_stupid_open(self):
         """
-        open the "python.txt" file without codecs library
-        return the first word of the third line  of the content.
-        You need to decode the word with UTF-8
+        open the "python.txt" file without codecs library.
+        How many "파이썬" word are there?
+        you may need to decode the text file.
+        
         """
         correct_answer = u"파이썬은"
         your_answer = yourtest.stupid_open()
-        self.assertEqual(correct_answer, your_answer)
+        self.assertEqual(20, your_answer)
     
-    def test_codecs_open(self):
-        """
-        Just open the "python.txt" with codecs library.
-        return the content of the file
-        """
-        correct_answer = "7f6b2b893e5cb8f923a4e7da669557cc"
-        content = yourtest.just_codecs_open()
-        your_answer = self._make_hash(content)
-        self.assertEqual(correct_answer, your_answer)
-        
     def test_codecs_open_with_euckr(self):
         """
         Open the "korea.txt" file with codecs library.
@@ -58,11 +49,6 @@ class BasicFileTest(unittest.TestCase):
         Return the most frequently shown word
         """
         self.assertEqual(u'한반도', yourtest.open_euckr())
-        
-    def _make_hash(self, content):
-        md5 = hashlib.md5()
-        md5.update(content.encode('utf-8'))
-        return md5.hexdigest()
-        
+                
 if __name__ == "__main__":
     unittest.main()
