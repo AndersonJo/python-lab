@@ -37,7 +37,6 @@ class BasicFileTest(unittest.TestCase):
         you may need to decode the text file.
         
         """
-        correct_answer = u"파이썬은"
         your_answer = yourtest.stupid_open()
         self.assertEqual(20, your_answer)
     
@@ -46,7 +45,8 @@ class BasicFileTest(unittest.TestCase):
         Open the "korea.txt" file with codecs library.
         You may need to use 'EUC-KR' codec.
         
-        Return the most frequently shown word
+        Return the most frequently shown word.
+        You many need Counter.
         """
         self.assertEqual(u'한반도', yourtest.open_euckr())
                 
