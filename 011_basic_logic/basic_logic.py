@@ -23,7 +23,7 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(False, yourtest.gt12(-4))
         self.assertEqual(True, yourtest.gt12(150))
     
-    def atest_president(self):
+    def test_president(self):
         """
         당신은 박근혜 대통령의 경호실장이다.
         어떠한 위협으로부터도 지켜야 할 의무가 있다.
