@@ -136,7 +136,7 @@ class DictionaryTest(unittest.TestCase):
     def test_diff21(self):
         """
         주어진값과 21과의 절대값(absolute) 차이를 리턴시키세요.
-        만약 그 차이값이 21을 넘을 경우, 그 차이값에 2를 곱하세요. 
+        만약 주어진 값이 21을 넘을 경우, 그 차이값에 2를 곱하세요. 
         """
         self.assertEqual(2, yourtest.diff21(19))
         self.assertEqual(11, yourtest.diff21(10))
