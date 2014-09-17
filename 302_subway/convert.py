@@ -13,10 +13,10 @@ import csv
 import json
 import pyproj
 
-korea_epsg = pyproj.Proj(init="epsg:3383")
+korea_epsg = pyproj.Proj(init="epsg:3734")
 wgs84 = pyproj.Proj(init='epsg:4326')
 
-x, y = 493365,1125595
+x, y = 198472.518, 452487.224
 
 lock = Lock()
 f = open('result.txt', 'w')
@@ -50,14 +50,15 @@ def transform(x, y, diff=0):
 
 def convert(diff=0):
     response = []
-    with open('subway_coordination.csv', 'rb') as f:
+    with open('wifi.csv', 'rb') as f:
         reader = csv.reader(f)
         for line in reader:
             try:
                 station = line[1]
                 
-                x = float(line[5])
-                y = float(line[6])
+                x = float(line[4])
+                y = float(line[5])
+                print x, y
                 
                 
                 x,y = transform(x, y)
@@ -83,9 +84,9 @@ def convert(diff=0):
 
 
 if __name__ == "__main__":
-    print find()
-    print transform(37.554748, 126.970647)
-    print 32.575077694475446 - 37.554748
+    #print find()
+    print transform(198472.518,452487.224)
+    print 198472.518,452487.224
     result = convert(17.0303296945)
     print result
     print json.dumps(result)
