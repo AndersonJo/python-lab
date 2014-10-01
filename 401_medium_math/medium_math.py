@@ -83,12 +83,6 @@ class MediumMath(unittest.TestCase):
         self.assertEqual(14.14, yourtest.equation2([20, 30], [30, 40]))
         self.assertEqual(0.0, yourtest.equation2([], []))
         
-
-
-
-
-
-
         
     def test_standard_deviation(self):
         """
@@ -99,13 +93,11 @@ class MediumMath(unittest.TestCase):
         
         s = sqrt(E(x - mean(X))**2/n-1)
         """
-        self.assertEqual(2.4495,  yourtest.my_sample_std([10,4,2, 4, 7, 8, 9]))
-        self.assertEqual(449.4185,  yourtest.my_sample_std([1, 100, 1000]))
-        self.assertEqual(2.6458,  yourtest.my_sample_std([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+        self.assertEqual(3.0,  yourtest.my_sample_std([10,4,2, 4, 7, 8, 9]))
+        self.assertEqual(550.4244,  yourtest.my_sample_std([1, 100, 1000]))
+        self.assertEqual(3.0,  yourtest.my_sample_std([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
         
         
-    
-    
 
 if __name__ == "__main__":
     unittest.main()
