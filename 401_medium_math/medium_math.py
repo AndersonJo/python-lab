@@ -76,13 +76,19 @@ class MediumMath(unittest.TestCase):
         
         the calculated value should be rounded to 2 decimal place
         """
-        self.assertEqual(42.23, yourtest.equation2([10, 4, 20], [20, 30, 5]))
-        self.assertEqual(59.35, yourtest.equation2([1,2,3], [10, 20, 30]))
-        self.assertEqual(0, yourtest.equation2([1], [1]))
-        self.assertEqual(10, yourtest.equation2([10], [20]))
-        self.assertEqual(24.49, yourtest.equation2([20, 30], [30, 40]))
-        self.assertEqual(0, yourtest.equation2([], []))
+        self.assertEqual(31.64, yourtest.equation2([10, 4, 20], [20, 30, 5]))
+        self.assertEqual(33.67, yourtest.equation2([1,2,3], [10, 20, 30]))
+        self.assertEqual(0.0, yourtest.equation2([1], [1]))
+        self.assertEqual(10.0, yourtest.equation2([10], [20]))
+        self.assertEqual(14.14, yourtest.equation2([20, 30], [30, 40]))
+        self.assertEqual(0.0, yourtest.equation2([], []))
         
+
+
+
+
+
+
         
     def test_standard_deviation(self):
         """
