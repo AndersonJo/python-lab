@@ -2,7 +2,7 @@
 '''
 파이썬/안드로이드/빅데이터 개발자 조창민입니다.
 컨설팅/개발문의/강의 문의는 이메일로 부탁드립니다
-http://mket.biz
+http://andersonjo.github.io/
 a141890@gmail.com
 '''
 from pprint import pprint
