@@ -1,7 +1,7 @@
 .idea
-*.pyc
-*yourtest.py
 .settings
 .project
 .pydevproject
-example.py
+
+*.pyc
+*yourtest.py
