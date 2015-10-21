@@ -1,44 +1,44 @@
-import numpy as np
+def matrix_add(m1, m2):
+    r = []
+    for i in range(len(m1)):
+        n = []
+        for j in range(len(m1[i])):
+            n.append(m1[i][j] + m2[i][j])
+        r.append(n)
+    return r
 
 
-def matrix_add(a, b):
-    l1 = [len(i) for i in a]
-    l2 = [len(i) for i in b]
-
-    if l1 != l2:
-        raise ValueError('shape is different(%s != %s)' % (l1, l2))
-
-    response = list()
-    for sub1, sub2 in zip(a, b):
-        response.append([i + j for i, j in zip(sub1, sub2)])
-    return response
+def matrix_multiply(m1, m2):
+    r = []
+    for i in range(len(m1)):
+        r.append([0 for l in range(len(m1))])
+        for j in range(len(m1)):
+            for k in range(len(m1[j])):
+                r[i][j] += m1[i][k] * m2[k][j]
+    return r
 
 
-def matrix_multiply(a, b):
-    na = len(a)
-    ma = list(set([len(v) for v in a]))[0]
-    nb = len(b)
-    mb = list(set([len(v) for v in b]))[0]
-    response = [[0 for j in range(mb)] for i in range(na)]
-    for i in range(na):
-        for j in range(mb):
-            for k in range(ma):
-                response[i][j] += a[i][k] * b[k][j]
-
-    return response
-
-
-def matrix_scalar_multiply(a, b):
-    if not hasattr(a, '__iter__') and hasattr(b, '__iter__'):
-        scalar = a
-        matrix = b
-    elif hasattr(a, '__iter__') and not hasattr(b, '__iter__'):
-        scalar = b
-        matrix = a
+def matrix_scalar_multiply(m1, m2):
+    if hasattr(m1, '__iter__') and not hasattr(m2, '__iter__'):
+        matrix = m1
+        scalar = m2
     else:
-        raise ValueError('one argument must be a scalar type')
+        matrix = m2
+        scalar = m1
 
-    for vector in matrix:
-        for i in range(len(vector)):
-            vector[i] *= scalar
-    return matrix
+    r = []
+    for i in range(len(matrix)):
+        r.append([])
+        for j in range(len(matrix[i])):
+            r[i].append(matrix[i][j] * scalar)
+    return r
+
+
+def transpose(matrix):
+    return [arr for arr in zip(*matrix)]
+
+
+def rotate(matrix, direction=-1):
+    if direction == -1:
+        return zip(*matrix[::-1])
+    return zip(*matrix)[::-1]
