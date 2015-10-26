@@ -69,6 +69,8 @@ class MatrixTest(TestCase):
         self.assertEqual(True, (self.data3 == yourtest.transpose(self.data3.T.tolist())).all())
         self.assertEqual(True, (self.data4.T == yourtest.transpose(self.data4.tolist())).all())
         self.assertEqual(True, (self.data4 == yourtest.transpose(self.data4.T.tolist())).all())
+        self.assertEqual(True, (self.data5.T == yourtest.transpose(self.data5.tolist())).all())
+        self.assertEqual(True, (self.data5 == yourtest.transpose(self.data5.T.tolist())).all())
 
     def test_rotate(self):
         """
