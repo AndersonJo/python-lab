@@ -28,6 +28,10 @@ class BubbleSortTest(TestCase):
         answer = self.sort(data)
         self.assertEqual(answer, bubble_sort(data))
 
+        data = []
+        answer = self.sort(data)
+        self.assertEqual(answer, bubble_sort(data))
+
     def sort(self, data):
         new_one = data[:]
         new_one.sort()

@@ -24,6 +24,22 @@ class QuickSortTest(TestCase):
         answer = self.sort(data)
         self.assertEqual(answer, quick_sort(data))
 
+        data = [50, 10, 10, 10, 5, 5, 5, 3, 3, 3, 2, 2, 2, 2]
+        answer = self.sort(data)
+        self.assertEqual(answer, quick_sort(data))
+
+        data = [10]
+        answer = self.sort(data)
+        self.assertEqual(answer, quick_sort(data))
+
+        data = [20, 10]
+        answer = self.sort(data)
+        self.assertEqual(answer, quick_sort(data))
+
+        data = []
+        answer = self.sort(data)
+        self.assertEqual(answer, quick_sort(data))
+
     def sort(self, data):
         new_one = data[:]
         new_one.sort()

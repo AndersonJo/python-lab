@@ -20,6 +20,18 @@ class SelectionSortTest(TestCase):
         answer = self.sort(data)
         self.assertEqual(answer, selection_sort(data))
 
+        data = [10]
+        answer = self.sort(data)
+        self.assertEqual(answer, selection_sort(data))
+
+        data = [20, 10]
+        answer = self.sort(data)
+        self.assertEqual(answer, selection_sort(data))
+
+        data = []
+        answer = self.sort(data)
+        self.assertEqual(answer, selection_sort(data))
+
     def sort(self, data):
         new_one = data[:]
         new_one.sort()
