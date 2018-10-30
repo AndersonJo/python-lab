@@ -8,6 +8,7 @@
 - Python
 - Data Structure
 - Algorithm
+- Machine Learning 
 
 
 ### 공부 방법 ###
